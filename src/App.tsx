@@ -1,25 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { useRoutes } from './routes'
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      ...theme.typography.button,
+      backgroundColor: theme.palette.background.paper,
+      padding: theme.spacing(1),
+    },
+  }),
+);
 
 function App() {
+  const routes = useRoutes(true)
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Container>
+        <header>
+          <Button variant="outlined" color="primary">
+            sign in
+          </Button>
+          <div className="logo">
+
+          </div>
+          <div>
+            <div className="search">
+
+            </div>
+            <div className="basket">
+
+            </div>
+          </div>
+        </header>
+        <main>
+          {routes}
+        </main>
+      </Container>
+    </Router>
   );
 }
 
